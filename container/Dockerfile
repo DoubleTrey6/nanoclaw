@@ -4,7 +4,9 @@
 FROM node:22-slim
 
 # Install system dependencies for Chromium
-RUN apt-get update && apt-get install -y \
+RUN echo 'deb http://mirrors.tuna.tsinghua.edu.cn/debian/ bookworm main contrib non-free-firmware' > /etc/apt/sources.list \
+    && echo 'deb http://mirrors.tuna.tsinghua.edu.cn/debian-security/ bookworm-security main contrib non-free-firmware' >> /etc/apt/sources.list \
+    && apt-get update && apt-get install -y \
     chromium \
     fonts-liberation \
     fonts-noto-cjk \

@@ -241,6 +241,11 @@ function buildContainerArgs(
   // Runtime-specific args for host gateway resolution
   args.push(...hostGatewayArgs());
 
+  // Pass agent model name to container if set
+  if (process.env.AGENT_MODEL_NAME) {
+    args.push('-e', `AGENT_MODEL_NAME=${process.env.AGENT_MODEL_NAME}`);
+  }
+
   // Run as host user so bind-mounted files are accessible.
   // Skip when running as root (uid 0), as the container's node user (uid 1000),
   // or when getuid is unavailable (native Windows without WSL).
